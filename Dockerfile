@@ -6,4 +6,6 @@ COPY src/ ./src
 
 RUN pip install pytest
 
+EXPOSE 8000
+
 CMD ["pytest", "src/addition.py"]
