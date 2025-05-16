@@ -20,3 +20,4 @@ In conclusion, Jenkins is better suited for complex and large-scale automation t
 
 # Trigger workflow
 # retry build
+# retry docker push with updated token
