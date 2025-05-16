@@ -16,7 +16,7 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v3
 
-      - name: Set up Python ${{ matrix.python-version }}
+      - name: Set up Python
         uses: actions/setup-python@v2
         with:
           python-version: ${{ matrix.python-version }}
@@ -37,5 +37,17 @@ jobs:
       - name: Run tests inside Docker
         run: docker run --rm github-actions-demo
 
+      - name: Log in to Docker Hub
+        uses: docker/login-action@v2
+        with:
+          username: ${{ secrets.DOCKER_USERNAME }}
+          password: ${{ secrets.DOCKER_PASSWORD }}
+
+      - name: Tag Docker image
+        run: docker tag github-actions-demo oscar361/github-actions-demo:latest
+
+      - name: Push Docker image
+        run: docker push oscar361/github-actions-demo:latest
+
       - name: Simulate Deployment
-        run: echo "🚀 Simulating deployment... Success!"
+        run: echo "🚀 Deployment simulated."
